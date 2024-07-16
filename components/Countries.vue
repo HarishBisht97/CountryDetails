@@ -112,8 +112,12 @@ export default {
 }
 .country-flag {
   width: 200px;
+  max-width: 200px;
   height: 120px;
+  max-height: 120px;
   margin-right: 20px;
+  border: 0.5px solid;
+  object-fit: cover;
 }
 .country-info {
   flex-grow: 1;
@@ -127,18 +131,19 @@ export default {
 }
 .country-info-buttons {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
 }
 button {
   margin-right: 10px;
+  margin-bottom: 10px;
   background-color: #fff;
   border: 2px solid #007bff;
   color: #007bff;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 4px;
-  width: 150px;
+  width: calc(50% - 15px); /* Adjust width to fit two buttons per row */
+  box-sizing: border-box;
 }
 button:hover {
   background-color: #007bff;

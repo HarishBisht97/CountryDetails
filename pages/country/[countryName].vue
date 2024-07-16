@@ -2,19 +2,23 @@
   <div class="country-detail" v-if="country">
     <h1>{{ country?.name?.common }}</h1>
     <div class="info">
-      <img :src="country.flags.png" alt="Country flag" class="country-flag" />
+      <img
+        :src="country.flags.png"
+        alt="Country flag"
+        class="info-country-flag"
+      />
       <div class="country-info">
-        <p><strong>Native Name:</strong> {{ country?.name?.common }}</p>
-        <p><strong>Capital:</strong> {{ country.capital[0] }}</p>
-        <p><strong>Population:</strong> {{ country.population }}</p>
-        <p><strong>Region:</strong> {{ country.region }}</p>
-        <p><strong>Sub-region:</strong> {{ country.subregion }}</p>
-        <p><strong>Area:</strong> {{ country.area }} km²</p>
+        <p>Native Name: {{ country?.name?.common }}</p>
+        <p>Capital: {{ country.capital[0] }}</p>
+        <p>Population: {{ country.population }}</p>
+        <p>Region: {{ country.region }}</p>
+        <p>Sub-region: {{ country.subregion }}</p>
+        <p>Area: {{ country.area }} km²</p>
         <p>
-          <strong>Languages:</strong>
+          Languages:
           {{ country.languages.eng }}
         </p>
-        <p><strong>Timezones:</strong> {{ country.timezones.join(", ") }}</p>
+        <p>Timezones: {{ country.timezones.join(", ") }}</p>
       </div>
     </div>
     <div class="neighbour-countries-container" v-if="borderFlags.length">
@@ -49,6 +53,8 @@ export default {
       );
 
       this.country = response.data[0];
+
+      console.log("response.data[0]", response.data[0]);
 
       try {
         const borderCodes = response.data[0].borders;
@@ -96,15 +102,18 @@ export default {
 <style>
 .info {
   display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
 }
 .country-detail {
   width: 700px;
   margin: 0 auto;
 }
-.country-flag {
+.info-country-flag {
   width: 300px;
   height: 180px;
-  margin-bottom: 20px;
+  border: 1px solid;
+  margin-right: 20px;
 }
 .neighbour-countries-container {
   border: 1px solid;
@@ -117,7 +126,9 @@ export default {
 .neighbour-flag {
   width: 180px;
   height: 100px;
-  margin: 5px;
-  padding: 10px;
+  max-width: 180px;
+  max-height: 100px;
+  margin: 10px;
+  border: 1px solid;
 }
 </style>
